@@ -131,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtHienThi.getText().length()>0){
-                    String num = txtHienThi.getText().toString();
-                    txtHienThi.setText(num.substring(0,txtHienThi.getText().length()-1));
+                if(txtHienThi.getText().length()>0) {
+                   String num = txtHienThi.getText().toString();
+                   txtHienThi.setText(num.substring(0,txtHienThi.getText().length()-1));
                 }
             }
         });
@@ -156,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(txtkq.getText().length()>0){
-                    txtkq.setText(String.valueOf(txtkq));
+                    txtkq.setText(String.valueOf(Float.parseFloat(txtkq.getText().toString())/100f));
+                    value1 = Float.parseFloat(txtkq.getText().toString());
                 }
             }
         });
@@ -213,12 +214,16 @@ public class MainActivity extends AppCompatActivity {
         btnBang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(txtkq.getText().toString()=="0.0"){
+                    value1=Float.parseFloat(txtHienThi.getText().toString());
+                    txtkq.setText(txtHienThi.getText().toString());
+                }
                 compute();
                 ACTION = NUL;
                 txtkq.setText( String.valueOf(value1));
                 value2 = value1;
                 txtHienThi.setText(null);
-                txtHienThi.setText("0");
+                txtHienThi.setText(" ");
             }
         });
     }
@@ -229,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!Float.isNaN(value1)){
 
-            if(txtHienThi.getText()!=""){
+            if(txtHienThi.getText()!=" "){
                 value2 = Float.parseFloat(txtHienThi.getText().toString());
             }else{
                 value2 = Float.parseFloat(txtkq.getText().toString());
